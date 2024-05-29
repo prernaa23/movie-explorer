@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_API_URL = "http://localhost:3000/api/movies";
+const BASE_API_URL = "https://movie-explorer-uq10.onrender.com/api/movies";
 
 export const fetchMoviesByTitle = async (title) => {
   let data = [];
