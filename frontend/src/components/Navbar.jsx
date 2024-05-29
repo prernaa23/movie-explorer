@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
+const Navbar = () => {
+  const [title, setTitle] = useState("");
+  const navigate = useNavigate();
 
-const Navbar = ({title,setTitle}) => {
+  const handleInputChange = (e) => {
+    const newTitle = e.target.value;
+    setTitle(newTitle);
+    if (newTitle.trim() !== "") {
+      navigate(`/search?title=${newTitle}`);
+    }
+    else {
+      navigate("/");
+    }
+  };
+
   return (
     <>
       <nav className="bg-white border-gray-200 dark:bg-gray-900">
@@ -59,7 +73,7 @@ const Navbar = ({title,setTitle}) => {
                 type="text"
                 id="search-navbar"
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={handleInputChange}
                 className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Search..."
               />
@@ -71,4 +85,4 @@ const Navbar = ({title,setTitle}) => {
   );
 };
 
-export default Navbar;
+export default Navbar
